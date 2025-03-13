@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vanilla App Template</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body>
+  <div class="app">
+    <form action="POST" class="app-form">
+      <input type="text" name="search" id="search" placeholder="Search images..." />
+      <input type="submit" value="Search" />
+    </form>
+    <ul class="gallery" id="galleryList">
+      <!-- <li class="gallery-item">
+          <img src="https://picsum.photos/360/200" alt="Random image" />
+          <div class="content">
+            <div class="info">
+              <h5 class="key">Likes</h5>
+              <p class="value">1813</p>
+            </div>
+            <div class="info">
+              <h5 class="key">Views</h5>
+              <p class="value">900290</p>
+            </div>
+            <div class="info">
+              <h5 class="key">Comments</h5>
+              <p class="value">229</p>
+            </div>
+            <div class="info">
+              <h5 class="key">Downloads</h5>
+              <p class="value">610937</p>
+            </div>
+          </div>
+        </li> -->
+
+    </ul>
+    <input type="button" id="nextPage" style="display: none;" value="Load More">
+  </div>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+
+</html>
