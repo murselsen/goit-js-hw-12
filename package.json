@@ -1,12 +1,11 @@
 {
-  "name": "goit-hw-js-11",
-  "private": true,
-  "version": "1.0.341",
+  "name": "goit-hw-js-12",
+  "version": "1.0.0",
   "type": "module",
-  "homepage": "http://murselsen.github.io/goit-hw-js-11",
+  "homepage": "http://murselsen.github.io/goit-hw-js-12",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/goit-hw-js-11/",
+    "build": "vite build --base=/goit-hw-js-12/",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
