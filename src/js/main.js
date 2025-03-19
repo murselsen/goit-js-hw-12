@@ -134,9 +134,8 @@ const searchPhotos = (search, page) => {
           key: '21250106-0015933422f1e636de5f184b8',
           q: search,
           image_type: 'photo',
-          orientation: 'horizontal',
+          orientation: 'all',
           safesearch: true,
-          
           page: page,
           per_page: 40,
         },
@@ -223,14 +222,7 @@ document.querySelector('#nextPage').addEventListener('click', async e => {
   const photosResponse = await searchPhotos(search, searchActivePage);
   const photos = photosResponse.data.hits;
 
-  if (photos.length === 0) {
-    iziToast.error({
-      position: 'topRight',
-      color: 'red',
-      message:
-        'Sorry, there are no images matching your search query. Please try again!',
-    });
-  } else {
+
     photos.forEach(photo => {
       galleryItem(photo);
     });
@@ -245,5 +237,8 @@ document.querySelector('#nextPage').addEventListener('click', async e => {
     }
 
     galleryBox.refresh();
-  }
+
+
+    if (sear)
+
 });
