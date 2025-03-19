@@ -240,7 +240,11 @@ document.querySelector('#nextPage').addEventListener('click', async e => {
 
 
   if (searchActivePage === searchMaxPage) {
-      document.querySelector('#nextPage').removeEventListener()
+    document.querySelector('#nextPage').removeEventListener("click");
+    iziToast.info({
+    "animateInside"
+      message: "We're sorry, but you've reached the end of search results",
+    });
     }
 
 });
