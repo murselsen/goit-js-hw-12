@@ -239,6 +239,8 @@ document.querySelector('#nextPage').addEventListener('click', async e => {
     galleryBox.refresh();
 
 
-    if (sear)
+  if (searchActivePage === searchMaxPage) {
+      document.querySelector('#nextPage').removeEventListener()
+    }
 
 });
