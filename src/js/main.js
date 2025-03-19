@@ -135,7 +135,8 @@ const searchPhotos = (search, page) => {
           q: search,
           image_type: 'photo',
           orientation: 'horizontal',
-          safesearch: false,
+          safesearch: true,
+          
           page: page,
           per_page: 40,
         },
