@@ -135,7 +135,7 @@ const searchPhotos = (search, page) => {
           q: search,
           image_type: 'photo',
           orientation: 'all',
-          safesearch: true,
+          safesearch: false,
           page: page,
           per_page: 40,
         },
@@ -162,6 +162,7 @@ const searchPhotos = (search, page) => {
 
       if (searchActivePage < searchMaxPage) {
         document.querySelector('#nextPage').style.display = 'block';
+        document.querySelector('#nextPage').textContent = `Next Page (${sear + 1})`;
       }
 
       resolve(pixabayResponse);
