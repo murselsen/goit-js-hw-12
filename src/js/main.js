@@ -169,6 +169,27 @@ const searchPhotos = (search, page) => {
   });
 };
 
+const renderPhotos = async () => {
+  const search = searchText;
+  const photosResponse = await searchPhotos(search, searchActivePage);
+  const photos = photosResponse.data.hits;
+
+  galleryList.innerHTML = '';
+  if (photos.length === 0) {
+    iziToast.error({
+      position: 'topRight',
+      color: 'red',
+      message:
+        'Sorry, there are no images matching your search query. Please try again!',
+    });
+  } else {
+    photos.forEach(photo => {
+      galleryItem(photo);
+    });
+    galleryBox.refresh();
+  }
+};
+
 form.addEventListener('submit', async e => {
   e.preventDefault();
   galleryList.innerHTML = '';
@@ -194,23 +215,7 @@ form.addEventListener('submit', async e => {
     item.style.border = 'none';
     galleryList.appendChild(item);
 
-    const photosResponse = await searchPhotos(search, searchActivePage);
-    const photos = photosResponse.data.hits;
-
-    galleryList.innerHTML = '';
-    if (photos.length === 0) {
-      iziToast.error({
-        position: 'topRight',
-        color: 'red',
-        message:
-          'Sorry, there are no images matching your search query. Please try again!',
-      });
-    } else {
-      photos.forEach(photo => {
-        galleryItem(photo);
-      });
-      galleryBox.refresh();
-    }
+    renderPhotos();
 
     e.target.reset();
   }
@@ -218,13 +223,7 @@ form.addEventListener('submit', async e => {
 
 document.querySelector('#nextPage').addEventListener('click', async e => {
   searchActivePage++;
-  const search = searchText;
-  const photosResponse = await searchPhotos(search, searchActivePage);
-  const photos = photosResponse.data.hits;
-
-  photos.forEach(photo => {
-    galleryItem(photo);
-  });
+  renderPhotos();
 
   const galleryItemD = document.querySelector('.gallery img');
   if (galleryItemD) {
@@ -234,8 +233,6 @@ document.querySelector('#nextPage').addEventListener('click', async e => {
       behavior: 'smooth',
     });
   }
-
-  galleryBox.refresh();
 
   if (searchActivePage === searchMaxPage) {
     document.querySelector('#nextPage').dispatchEvent('click');
