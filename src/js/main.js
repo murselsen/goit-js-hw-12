@@ -222,29 +222,26 @@ document.querySelector('#nextPage').addEventListener('click', async e => {
   const photosResponse = await searchPhotos(search, searchActivePage);
   const photos = photosResponse.data.hits;
 
+  photos.forEach(photo => {
+    galleryItem(photo);
+  });
 
-    photos.forEach(photo => {
-      galleryItem(photo);
+  const galleryItemD = document.querySelector('.gallery img');
+  if (galleryItemD) {
+    const cardHeight = galleryItemD.getBoundingClientRect().height;
+    window.scrollBy({
+      top: cardHeight * 2.75,
+      behavior: 'smooth',
     });
+  }
 
-    const galleryItemD = document.querySelector('.gallery img');
-    if (galleryItemD) {
-      const cardHeight = galleryItemD.getBoundingClientRect().height;
-      window.scrollBy({
-        top: cardHeight * 2.75,
-        behavior: 'smooth',
-      });
-    }
-
-    galleryBox.refresh();
-
+  galleryBox.refresh();
 
   if (searchActivePage === searchMaxPage) {
-    document.querySelector('#nextPage').removeEventListener("click");
+    document.querySelector('#nextPage').dispatchEvent('click');
     iziToast.info({
-    "animateInside"
+      position: 'topRight',
       message: "We're sorry, but you've reached the end of search results",
     });
-    }
-
+  }
 });
