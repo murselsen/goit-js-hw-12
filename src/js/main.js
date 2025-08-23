@@ -15,10 +15,7 @@ let searchText,
   searchMaxPage;
 
 console.log(`
- 
-
   Search Photos API: https://pixabay.com/api/docs/
-
   Search Active Page: ${searchActivePage}
   Search Max Page: ${searchMaxPage}
   `);
