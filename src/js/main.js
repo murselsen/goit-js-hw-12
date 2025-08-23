@@ -15,14 +15,7 @@ let searchText,
   searchMaxPage;
 
 console.log(`
-  Merhaba! 👋
-  Kodluyoruz Front-End Eğitimi kapsamında hazırlamış olduğum bu projede
-  Axios, IziToast ve SimpleLightbox kütüphanelerini kullanarak bir fotoğraf
-  galerisi oluşturmayı hedefledim. Projeyi beğendiyseniz ⭐️'layarak beni
-  mutlu edebilirsiniz. Eğer projeyi geliştirmek isterseniz lütfen GitHub
-  üzerinden forklayın ve istediğiniz gibi değiştirin. Eğitim sürecinde
-  bana destek olan herkese teşekkür ederim. Hadi başlayalım! 🚀
-
+ 
 
   Search Photos API: https://pixabay.com/api/docs/
 
@@ -161,8 +154,10 @@ const searchPhotos = (search, page) => {
       }
 
       if (searchActivePage < searchMaxPage) {
+        document.querySelector(
+          '#nextPage',
+        ).textContent = `${searchActivePage} / ${searchMaxPage} | Next Page`;
         document.querySelector('#nextPage').style.display = 'block';
-        document.querySelector('#nextPage').textContent = `Next Page (${sear + 1})`;
       }
 
       resolve(pixabayResponse);
@@ -175,7 +170,7 @@ const renderPhotos = async () => {
   const photosResponse = await searchPhotos(search, searchActivePage);
   const photos = photosResponse.data.hits;
 
-  galleryList.innerHTML = '';
+  // galleryList.innerHTML = '';
   if (photos.length === 0) {
     iziToast.error({
       position: 'topRight',
@@ -215,6 +210,7 @@ form.addEventListener('submit', async e => {
     item.style.textAlign = 'center';
     item.style.border = 'none';
     galleryList.appendChild(item);
+    galleryList.innerHTML = '';
 
     renderPhotos();
 
@@ -226,17 +222,16 @@ document.querySelector('#nextPage').addEventListener('click', async e => {
   searchActivePage++;
   renderPhotos();
 
-  const galleryItemD = document.querySelector('.gallery img');
-  if (galleryItemD) {
-    const cardHeight = galleryItemD.getBoundingClientRect().height;
-    window.scrollBy({
-      top: cardHeight * 2.75,
-      behavior: 'smooth',
-    });
-  }
+  const cardHeight = document
+    .querySelector('.gallery img')
+    .getBoundingClientRect().height;
+  window.scrollBy({
+    top: cardHeight * 4.75,
+    behavior: 'smooth',
+  });
 
   if (searchActivePage === searchMaxPage) {
-    document.querySelector('#nextPage').dispatchEvent('click');
+    document.querySelector('#nextPage').removeEventListener('click');
     iziToast.info({
       position: 'topRight',
       message: "We're sorry, but you've reached the end of search results",
